@@ -1,13 +1,11 @@
-import digitalio
 import storage
-import board
+import pins
 
-mass_storage_pin = digitalio.DigitalInOut(board.GP0)
-mass_storage_pin.direction = digitalio.Direction.INPUT
-mass_storage_pin.pull = digitalio.Pull.UP
+# if GP0 is grounded, enable Pico's mass storage.
+# Alternatively, press the GP15 button WHILE plugging Pico into PC.
 
-print(mass_storage_pin.value)
+mass_storage_enabled = pins.mass_storage_pin.value is False \
+    or pins.is_pressed(pins.switch_in)
 
-# if GP0 is grounded, disable pico mass storage
-if mass_storage_pin.value is False:
+if not mass_storage_enabled:
     storage.disable_usb_drive()
