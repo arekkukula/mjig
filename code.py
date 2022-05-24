@@ -17,9 +17,6 @@ def on_switch_pressed():
     global mjig_enabled, last_mouse_move_timestamp
     mjig_enabled = not mjig_enabled
 
-    pins.ext_led.value = mjig_enabled
-    pins.int_led.value = mjig_enabled
-
     if mjig_enabled:
         last_mouse_move_timestamp = 0 # force move when next enabled
     return
@@ -70,6 +67,8 @@ while True:
 
     if mjig_enabled is True:
         trigger_mouse_move()
+
+    pins.set_led_state(mjig_enabled)
 
     time.sleep(0.1)
 
