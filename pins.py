@@ -42,3 +42,10 @@ def is_pressed(pin):
         return True
 
     return False
+
+def set_led_state(state):
+    assert isinstance(state, bool), "State is not of type bool."
+
+    ext_led.value = state
+    int_led.value = state
+    return
