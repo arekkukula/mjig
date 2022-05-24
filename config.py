@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2022 Arek Kukuła
+# Full text of the license can be found in the LICENSE file
 # SEE ALSO: boot.py
 
 # Whether the jiggler is enabled on start.

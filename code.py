@@ -1,5 +1,6 @@
-###########
-#
+# MIT License
+# Copyright (c) 2022 Arek Kukuła
+# Full text of the license can be found in the LICENSE file
 
 import time
 import usb_hid
