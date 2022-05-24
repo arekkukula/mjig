@@ -14,10 +14,9 @@ switch_in = digitalio.DigitalInOut(board.GP12)
 switch_in.direction = digitalio.Direction.INPUT
 switch_in.pull = digitalio.Pull.UP
 
-# Pin outputting whether the mjig is active at the moment.
-# Can be used to i.e. power a led.
-state_out = digitalio.DigitalInOut(board.GP15)
-state_out.direction = digitalio.Direction.OUTPUT
+# Internal (onboard) LED
+int_led = digitalio.DigitalInOut(board.LED)
+int_led.direction = digitalio.Direction.OUTPUT
 
 def is_pressed(pin):
     '''...'''
