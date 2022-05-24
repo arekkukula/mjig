@@ -54,6 +54,8 @@ def trigger_mouse_move():
 # Allows the boot sequence to safely complete without running the code below.
 time.sleep(1)
 
+switch_pressed = False
+
 # main loop
 while True:
     # detect if button is pressed
