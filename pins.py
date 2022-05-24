@@ -14,12 +14,21 @@ switch_in = digitalio.DigitalInOut(board.GP12)
 switch_in.direction = digitalio.Direction.INPUT
 switch_in.pull = digitalio.Pull.UP
 
+# External led
+ext_led = digitalio.DigitalInOut(board.GP15)
+ext_led.direction = digitalio.Direction.OUTPUT
+
 # Internal (onboard) LED
 int_led = digitalio.DigitalInOut(board.LED)
 int_led.direction = digitalio.Direction.OUTPUT
 
 def is_pressed(pin):
-    '''...'''
+    """
+        Check if pin is in active state based on relationship between
+        pull resistor setting and current pin value.
+        Asserts pin's INPUT direction.
+    """
+
     assert isinstance(pin, digitalio.DigitalInOut), \
         "Passed argument is not of type digitalio.DigitalInOut"
 

@@ -9,31 +9,34 @@ from adafruit_hid.mouse import Mouse
 import pins
 import config
 
-# Current mjig state (on/off).
-state = config.ENABLED_ON_START
-
-switch_pressed = False
-
 mouse = Mouse(usb_hid.devices)
+mjig_enabled = config.ENABLED_ON_START # Current mjig state (on/off).
 last_mouse_move_timestamp = 0
 
 def on_switch_pressed():
-    global state, state_out
+    global mjig_enabled, last_mouse_move_timestamp
+    mjig_enabled = not mjig_enabled
 
-    state = not state
-    pins.state_out.value = state
+    pins.ext_led.value = mjig_enabled
+    pins.int_led.value = mjig_enabled
+
+    if mjig_enabled:
+        last_mouse_move_timestamp = 0 # force move when next enabled
     return
 
 def move_mouse_rnd():
-    mouse.move(
-        x = random.randrange(
-            -config.MOUSE_MOVE_X_RNG,
-            config.MOUSE_MOVE_X_RNG
-        ),
-        y = random.randrange(
-            -config.MOUSE_MOVE_Y_RNG,
-            config.MOUSE_MOVE_Y_RNG)
-    )
+    global mouse
+    x = y = 0
+
+    while x == 0:
+        x = random.randrange(-config.MOUSE_MOVE_X, config.MOUSE_MOVE_X)
+
+    while y == 0:
+        y = random.randrange(-config.MOUSE_MOVE_Y, config.MOUSE_MOVE_Y)
+
+    mouse.move(x = x, y = y)
+
+    print(f'Moving mouse: {x}, {y}')
     return
 
 def trigger_mouse_move():
@@ -46,23 +49,24 @@ def trigger_mouse_move():
         last_mouse_move_timestamp = now
     return
 
+
 # Wait one second before proceeding with main loop.
-# Allows the boot sequence to safely complete without running code below.
+# Allows the boot sequence to safely complete without running the code below.
 time.sleep(1)
 
 # main loop
 while True:
     # detect if button is pressed
-    is_pressed = pins.is_pressed(pins.switch_in)
+    is_switch_in_pressed = pins.is_pressed(pins.switch_in)
 
-    if not switch_pressed and is_pressed:
+    if not switch_pressed and is_switch_in_pressed:
         on_switch_pressed()
         switch_pressed = True
 
-    if not is_pressed:
+    if not is_switch_in_pressed:
         switch_pressed = False
 
-    if state is True:
+    if mjig_enabled is True:
         trigger_mouse_move()
 
     time.sleep(0.1)
