@@ -25,6 +25,7 @@ _____
    module in your Pico's `/lib` folder.
 3. After successful installation, drag and drop all `.py` files from this repo
    into the root directory of your Pico.
+4. Reboot the device by unplugging and plugging again for the jiggler to run.
 
 That's it!
 
