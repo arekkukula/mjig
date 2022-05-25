@@ -57,8 +57,8 @@ If you're stuck and want to access the storage, you can either:
 _____
 ## Disclaimer
 The contents of this repository are provided "AS IS".\
-+By using any part of this repository (code, instructions, etc.), you agree that
-+you do it at your own risk.\
-+You acknowledge that working with electrical devices is hazardous, and that they
-+should be handled cautiously and with no negligence.\
-+I am not responsible for any damage to the equipment or injuries.
+By using any part of this repository (code, instructions, etc.), you agree that
+you do it at your own risk.\
+You acknowledge that working with electrical devices is hazardous, and that they
+should be handled cautiously and with no negligence.\
+I am not responsible for any damage to the equipment or injuries.
