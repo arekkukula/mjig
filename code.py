@@ -19,7 +19,6 @@ def on_switch_pressed():
 
     if mjig_enabled:
         last_mouse_move_timestamp = 0 # force move when next enabled
-    return
 
 def move_mouse_rnd():
     global mouse
@@ -34,7 +33,6 @@ def move_mouse_rnd():
     mouse.move(x = x, y = y)
 
     print(f'Moving mouse: {x}, {y}')
-    return
 
 def trigger_mouse_move():
     global last_mouse_move_timestamp
@@ -44,7 +42,6 @@ def trigger_mouse_move():
         # move mouse and set a timestamp
         move_mouse_rnd()
         last_mouse_move_timestamp = now
-    return
 
 
 # Wait one second before proceeding with main loop.

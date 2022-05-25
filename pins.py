@@ -48,4 +48,3 @@ def set_led_state(state):
 
     ext_led.value = state
     int_led.value = state
-    return
